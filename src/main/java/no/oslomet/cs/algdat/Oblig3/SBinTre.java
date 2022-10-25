@@ -106,6 +106,7 @@ public class SBinTre<T> {
 
         antall++;                                // én verdi mer i treet
         return true;                             // vellykket innlegging
+
         // throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
@@ -118,7 +119,22 @@ public class SBinTre<T> {
     }
 
     public int antall(T verdi) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        int antForekomster = 0;
+        if(verdi == null){
+            return 0;
+        }
+        Node<T> p = rot;
+        while (p!=null) {
+            int komp = comp.compare(verdi, p.verdi);
+            if (komp < 0)
+                p = p.venstre;
+            else {
+                if (komp == 0)
+                    antForekomster++;
+                p = p.høyre;
+            }
+        }
+        return antForekomster;
     }
 
     public void nullstill() {
