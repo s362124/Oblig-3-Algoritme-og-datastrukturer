@@ -150,7 +150,26 @@ public class SBinTre<T> {
     }
 
     private static <T> Node<T> nestePostorden(Node<T> p) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        if (p == null) {
+            throw new NoSuchElementException("Dette treet er tomt!");
+        }
+
+        else if (p.forelder == null) {
+            p = null;
+        }
+
+        else if (p == p.forelder.høyre) {
+            p = p.forelder;
+        }
+
+        else if (p == p.forelder.venstre) {
+            if (p.forelder.høyre == null) {
+            p = p.forelder;
+        }
+            else
+            p = førstePostorden(p.forelder.høyre);
+        }
+        return p;
     }
 
     public void postorden(Oppgave<? super T> oppgave) {
