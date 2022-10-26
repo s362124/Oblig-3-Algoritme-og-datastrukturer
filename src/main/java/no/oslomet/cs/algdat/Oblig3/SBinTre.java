@@ -120,15 +120,15 @@ public class SBinTre<T> {
         if(verdi == null){
             return 0;
         }
-        Node<T> p = rot;
-        while (p!=null) {
-            int komp = comp.compare(verdi, p.verdi);
+        Node<T> r = rot;
+        while (r!=null) {
+            int komp = comp.compare(verdi, r.verdi);
             if (komp < 0)
-                p = p.venstre;
+                r = r.venstre;
             else {
                 if (komp == 0)
                     antForekomster++;
-                p = p.høyre;
+                r = r.høyre;
             }
         }
         return antForekomster;
@@ -172,8 +172,12 @@ public class SBinTre<T> {
         return p;
     }
 
+    // Oppgave 4
     public void postorden(Oppgave<? super T> oppgave) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        if(rot == null)
+            return;
+
+        //throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     public void postordenRecursive(Oppgave<? super T> oppgave) {
