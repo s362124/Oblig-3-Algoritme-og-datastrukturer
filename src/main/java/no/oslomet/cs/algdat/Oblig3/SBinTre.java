@@ -203,7 +203,23 @@ public class SBinTre<T> {
     }
 
     public ArrayList<T> serialize() {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        ArrayList<T> enListe = new ArrayList<>();
+        ArrayDeque<Node> queue = new ArrayDeque<Node>();
+
+        queue.addLast(rot);
+        while ( !queue.isEmpty()){
+
+            Node<T> existant = queue.removeFirst();
+
+            if(existant.venstre!=null){
+                queue.addLast(existant.venstre);
+            }
+            if(existant.høyre!=null){
+                queue.addLast(existant.høyre);
+            }
+            enListe.add(existant.verdi);
+        }
+        return enListe;
     }
 
     static <K> SBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {
