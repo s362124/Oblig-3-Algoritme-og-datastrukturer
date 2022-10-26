@@ -187,8 +187,11 @@ public class SBinTre<T> {
         return antForekomster;
     }
 
-    public void nullstill() {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+    public void nullstill(Node<T> rot) {
+        if(!tom()) nullstill(rot);
+        this.rot = null;
+        antall = 0;
+        endringer = 0;
     }
 
     private static <T> Node<T> førstePostorden(Node<T> p) {
