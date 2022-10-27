@@ -187,11 +187,23 @@ public class SBinTre<T> {
         return antForekomster;
     }
 
-    public void nullstill(Node<T> rot) {
-        if(!tom()) nullstill(rot);
-        this.rot = null;
+    public void nullstill()  {
+        nullstill(rot);
+        rot = null;
         antall = 0;
         endringer = 0;
+    }
+
+    public void nullstill(Node<T> node) {
+        if(node == null)
+            return;
+        nullstill(node.venstre);
+        nullstill(node.høyre);
+        node.verdi = null;
+        node.venstre = null;
+        node.høyre = null;
+        node.forelder = null;
+
     }
 
     private static <T> Node<T> førstePostorden(Node<T> p) {
